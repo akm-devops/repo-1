@@ -17,7 +17,6 @@
 name: Listener for Repository Trigger
 
 on:
-  repository_dispatch:
   # workflow_dispatch:
   repository_dispatch:
     types:
