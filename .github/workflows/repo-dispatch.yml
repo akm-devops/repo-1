@@ -1,15 +1,29 @@
-name: Target Repository Workflow
+# name: Target Repository Workflow
+# on:
+#   push:
+#   pull_request:
+#     branches:
+#       - main
+#   workflow_dispatch:
+#   repository_dispatch: #add this
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Testing repo dispatch
+#         run: |-
+#           echo "This workflow was triggered from another workflow"
+
+name: Listener for ghidra
+
 on:
-  push:
-  pull_request:
-    branches:
-      - main
+  repository_dispatch:
   workflow_dispatch:
-  repository_dispatch: #add this
+
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  dump:
+    runs-on: ubuntu-24.04
     steps:
-      - name: Testing repo dispatch
-        run: |-
-          echo "This workflow was triggered from another workflow"
+      - name: Dump event payload
+        run: |
+          jq . "$GITHUB_EVENT_PATH"
