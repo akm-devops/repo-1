@@ -19,6 +19,7 @@ name: Listener for ghidra
 on:
   repository_dispatch:
   workflow_dispatch:
+    - custom
 
 jobs:
   dump:
