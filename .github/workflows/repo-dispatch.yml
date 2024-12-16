@@ -14,12 +14,14 @@
 #         run: |-
 #           echo "This workflow was triggered from another workflow"
 
-name: Listener for ghidra
+name: Listener for Repository Trigger
 
 on:
   repository_dispatch:
-  workflow_dispatch:
-    - custom
+  # workflow_dispatch:
+  repository_dispatch:
+    types:
+      - custom
 
 jobs:
   dump:
