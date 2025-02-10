@@ -20,6 +20,8 @@ on:
   pull_request:
     types:
       - opened
+      - edited
+      - reopened
       - closed
 
   workflow_dispatch:
@@ -31,7 +33,11 @@ jobs:
   dump:
     if: github.event.pull_request.merged == true ||
         github.event_name == 'workflow_dispatch' ||
-        github.event_name == 'repository_dispatch'
+        github.event_name == 'repository_dispatch' ||
+        github.event.action == 'opened' ||
+        github.event.action == 'edited' ||
+        github.event.action == 'reopened'
+        
     runs-on: ubuntu-24.04
     steps:
       - name: Dump event payload
